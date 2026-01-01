@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome</h1>
+
+{% if current_user.is_authenticated %}
+{% for user in users %}
+<div style="margin-bottom: 10px;">
+        <a href="{{ url_for('profile', user_id=user.id) }}">
+                <b>{{ user.username }}</b>
+        </a>
+
+
+        {% if user.id in follows %}
+        <form action="{{ url_for('unfollow', user_id=user.id) }}" method="post">
+                <button type="submit">Unfollow</button>
+        </form>
+        {% else %}
+        <form action="{{ url_for('follow', user_id=user.id) }}" method="post">
+                <button type="submit">Follow</button>
+        </form>
+        {% endif %}
+</div>
+{% endfor %}
+{%endif%}
+
+{% endblock %}

@@ -1,0 +1,114 @@
+/* ===== POSTS & CARDS ===== */
+.posts-container {
+    max-width: 700px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.post-title {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.post-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* ===== LIKE BUTTON ===== */
+.post-actions {
+    margin-top: 10px;
+}
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6b7280; /* gray by default */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.like-btn:hover {
+    transform: scale(1.1);
+}
+
+.like-btn .heart {
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.like-btn.liked {
+    color: #ef4444; /* red when liked */
+}
+
+.like-btn.liked .heart {
+    animation: pop 0.3s ease;
+}
+
+.like-count {
+    font-size: 0.95rem;
+}
+
+/* ===== HEART POP ANIMATION ===== */
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+.chat-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message {
+    margin: 5px 0;
+}
+
+.message.me {
+    text-align: right;
+    color: green;
+}
+
+.message.them {
+    text-align: left;
+    color: blue;
+}

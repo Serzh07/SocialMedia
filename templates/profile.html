@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+{{user.username}}
+{%if is_own_profile %}
+<a href="{{ url_for('add_post') }}">
+        <button>Add post</button>
+</a>
+{%else%}
+{%if is_following%}
+<form action="{{ url_for('unfollow', user_id=user.id) }}" method="post">
+        <button type="submit">Unfollow</button>
+</form>
+{% else %}
+<form action="{{ url_for('follow', user_id=user.id) }}" method="post">
+        <button type="submit">Follow</button>
+</form>
+{%endif%}
+{%endif%}
+{% if not is_own_profile %}
+    <a href="{{ url_for('chat', user_id=user.id) }}">Send Message</a>
+{% endif %}
+
+{% if is_own_profile or is_following %}
+<div class="posts-container">
+        {% for post in posts %}
+        <div class="post-card">
+                <h2 class="post-title">{{ post.title }}</h2>
+
+                <p class="post-text">
+                        {{ post.text }}
+                </p>
+
+                <div class="post-footer">
+            <span class="post-date">
+                {{ post.date_posted.strftime('%d %B %Y, %H:%M') }}
+            </span>
+                </div>
+                <form action="{{ url_for('like', post_id=post.id) }}" method="POST">
+                        <button type="submit"
+                                class="like-btn {% if post.id in liked_post_ids %}liked{% endif %}">
+                                <span class="heart">♥</span>
+                                <span class="like-count">{{ post_like_counts[post.id] }}</span>
+                        </button>
+                </form>
+
+
+        </div>
+
+        {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

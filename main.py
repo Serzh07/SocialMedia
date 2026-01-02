@@ -150,7 +150,7 @@ def chat(user_id):
         msg = Message(
             sender_id=current_user.id,
             receiver_id=other_user.id,
-            content_hash = '67',
+            content_hash = '65',
             content=form.content.data
         )
         db.session.add(msg)
